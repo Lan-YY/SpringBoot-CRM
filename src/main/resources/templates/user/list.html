@@ -41,7 +41,7 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select name="roleId" id="roleId" class="form-control" required="required">
                                                 <option value="0">--请选择--</option>
-                                                <option th:selected="${role.roleId == roleId}" th:each="role:${roles}" th:value="${role.roleId}" th:text="${role.roleName}"></option>
+                                                <!--<option th:selected="${role.roleId == roleId}" th:each="role:${roles}" th:value="${role.roleId}" th:text="${role.roleName}"></option>-->
                                             </select>
                                         </div>
                                     </div>
@@ -182,7 +182,44 @@
             });
         }
     }
+
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "/crm/role/json",
+            dataType: "json",
+            success: function (data) {
+                var $roleId = $("#roleId");
+                $.each(data,function (key,value) {
+                    $roleId.append("<option value=\""+value.roleid+"\">"+value.roleName+"</option>");
+                })
+            },
+            error: function (data) {
+                alert("对不起，获取数据失败");
+            }
+        });
+    })
+
 </script>
+
+<!--<script layout:fragment="js">-->
+    <!--$(document).ready(function () {-->
+            <!--$.ajax({-->
+                <!--type: "GET",-->
+                <!--url: "/crm/role/json",-->
+                <!--dataType: "json",-->
+                <!--success: function (data) {-->
+                    <!--alert("json:" + data);-->
+                <!--//    使用foreach显示出下拉列表的数据-->
+
+                <!--},-->
+                <!--error: function (data) {-->
+                    <!--alert("对不起，获取数据失败");-->
+                <!--}-->
+            <!--});-->
+    <!--});-->
+
+<!--</script>-->
 
 </body>
 </html>

@@ -27,5 +27,5 @@ import java.util.List;
 public interface RoleMapper extends BaseMapper<Role> {
 
 
-//    public List<Role> findAllRoles();
+    public List<Role> findAllRoles();
 }
