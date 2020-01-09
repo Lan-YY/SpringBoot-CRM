@@ -1,14 +1,21 @@
 package com.thymeleaf.mybatis;
 
+import com.thymeleaf.mybatis.pojo.UserBean;
+import com.thymeleaf.mybatis.service.UserBeanService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import redis.clients.jedis.Jedis;
 
+import javax.annotation.Resource;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ThymeleafApplicationTests {
+
+    @Resource
+    private UserBeanService userBeanService;
 
     @Test
     public void contextLoads() {
@@ -27,5 +34,16 @@ public class ThymeleafApplicationTests {
         jedis.close();
 
     }
+
+    @Test
+    public void testGetUser(){
+        UserBean userBean =userBeanService.getUser("admin");
+        System.out.println("对象输出》》" +userBean);
+
+        UserBean userBean1 =userBeanService.getUser("测试用户1");
+        System.out.println("对象输出》》" +userBean1);
+    }
+
+
 
 }
