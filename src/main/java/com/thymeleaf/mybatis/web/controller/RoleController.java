@@ -27,6 +27,7 @@ public class RoleController {
     @ResponseBody
     public List<Role> findAllRoles(){
         List<Role> list = roleService.findAllRoles();
+        System.out.println(list);
         return list;
     }
 }
