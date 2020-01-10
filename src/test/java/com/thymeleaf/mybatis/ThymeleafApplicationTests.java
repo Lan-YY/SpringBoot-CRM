@@ -40,7 +40,8 @@ public class ThymeleafApplicationTests {
         UserBean userBean =userBeanService.getUser("admin");
         System.out.println("对象输出》》" +userBean);
 
-        UserBean userBean1 =userBeanService.getUser("测试用户1");
+        //  没有使用缓存，第二仍然还是输出从数据库中查询
+        UserBean userBean1 =userBeanService.getUser("user22");
         System.out.println("对象输出》》" +userBean1);
     }
 
